@@ -16,7 +16,7 @@ const NavBar = () => {
   return (
     <div className="border-b shadow-sm mb-4">
       <nav className="constainer max-w-7xl mx-auto h-12 flex items-center space-x-4 ">
-        <Link href="/" legacyBehavior>
+        <Link href="/">
           <LuBug />
         </Link>
         <ul className="flex space-x-4">
@@ -29,7 +29,6 @@ const NavBar = () => {
                 "text-zinc-500": link.href !== currentPath,
                 "hover:text-zinc-800 transition-colors": true,
               })}
-              legacyBehavior
             >
               {link.label}
             </Link>
