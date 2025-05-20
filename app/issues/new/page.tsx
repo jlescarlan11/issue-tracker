@@ -1,6 +1,6 @@
 "use client";
-import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import dynamic from "next/dynamic";
 import { Button, Callout, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
@@ -11,6 +11,11 @@ import { createIssueSchema } from "@/app/validationSchemas";
 import { z } from "zod";
 import ErrorMessage from "@/app/components/ErrorMessage";
 import Spinner from "@/app/components/Spinner";
+
+// ✅ Dynamically import SimpleMDE with SSR disabled
+const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
 type IssueForm = z.infer<typeof createIssueSchema>;
 
@@ -46,12 +51,8 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form className=" space-y-2" onSubmit={onSubmit}>
-        <TextField.Root
-          placeholder="title"
-          {...register("title")}
-        ></TextField.Root>
-
+      <form className="space-y-2" onSubmit={onSubmit}>
+        <TextField.Root placeholder="title" {...register("title")} />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
         <Controller
@@ -61,9 +62,8 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="description" {...field} />
           )}
         />
-        {errors.description && (
-          <ErrorMessage>{errors.description?.message}</ErrorMessage>
-        )}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
+
         <Button disabled={isSubmitting}>
           Submit New Issue {isSubmitting && <Spinner />}
         </Button>
