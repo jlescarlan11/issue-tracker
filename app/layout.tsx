@@ -41,7 +41,6 @@ export default function RootLayout({
         <Theme>
           <NavBar />
           <main className="p-4">{children}</main>
-          {/* <ThemePanel></ThemePanel> */}
         </Theme>
       </body>
     </html>
