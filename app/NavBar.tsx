@@ -30,7 +30,7 @@ const NavBar = () => {
                 "text-zinc-500": link.href !== currentPath,
                 "hover:text-zinc-800 transition-colors": true,
               })}
-            >
+              legacyBehavior>
               {link.label}
             </Link>
           ))}
