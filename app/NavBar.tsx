@@ -2,7 +2,6 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { LuBug } from "react-icons/lu";
 
 const NavBar = () => {
@@ -30,7 +29,8 @@ const NavBar = () => {
                 "text-zinc-500": link.href !== currentPath,
                 "hover:text-zinc-800 transition-colors": true,
               })}
-              legacyBehavior>
+              legacyBehavior
+            >
               {link.label}
             </Link>
           ))}
